@@ -15,6 +15,8 @@ val Red = Color(0xFFDD0000)
 val Surface = White
 val SurfaceLighter = GrayLighter
 val SurfaceDarker = Gray
+val SurfaceBrand = Yellowish
+val SurfaceError = Red
 
 val TextPrimary = Black
 val TextSecondary = Orange
