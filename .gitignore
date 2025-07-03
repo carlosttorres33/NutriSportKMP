@@ -70,3 +70,4 @@ obj/
 #Strings
 
 google-services.json
+composeApp/google-services.json
