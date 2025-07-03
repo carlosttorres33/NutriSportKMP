@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.google.services)
 }
 
 kotlin {
@@ -45,7 +46,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
+            implementation(libs.auth.kmp)
+            implementation(libs.firebase.app)
+
             implementation(project(path = ":navigation"))
+            implementation(project(path = ":shared"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
