@@ -12,9 +12,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.mmk.kmpauth.google.GoogleAuthCredentials
 import com.mmk.kmpauth.google.GoogleAuthProvider
+import com.nutrisport.data.domain.CustomerRepository
 import com.nutrisport.navigation.NavGraph
+import com.nutrisport.navigation.Screen
 import com.nutrisport.shared.Constants
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.koinInject
 
 @Composable
 @Preview
@@ -22,8 +25,16 @@ fun App() {
 
     MaterialTheme {
 
+        val customerRepo = koinInject<CustomerRepository>()
+
         var isAppReady by remember {
             mutableStateOf(false)
+        }
+
+        val isUserAuthenticated = remember { customerRepo.getCurrentUserId() != null }
+
+        val startDestination = remember {
+            if (isUserAuthenticated) Screen.HomeGraph else Screen.Auth
         }
 
         LaunchedEffect(Unit){
@@ -43,7 +54,9 @@ fun App() {
             visible = isAppReady
         ){
 
-            NavGraph()
+            NavGraph(
+                startDestination = startDestination
+            )
 
         }
 
